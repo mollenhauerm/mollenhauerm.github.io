@@ -1,87 +1,93 @@
 <!DOCTYPE html>
-<!--
-    Plain-Academic by Vasilios Mavroudis
-    Released under the  Simplified BSD License/FreeBSD (2-clause) License.
-    https://github.com/mavroudisv/plain-academic
--->
 
 <html lang="en">
 <head>
-    <title>Mattes Mollenhauer</title>
+    <title>MATTES MOLLENHAUER</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.35;
+            color: #444;
+            background: #f2f2f2;
+        }
+
+        .page {
+            max-width: 600px;
+            margin: 26px auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .profile-header {
+            padding: 14px 0 12px;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            text-align: left;
+        }
+
+        .profile-title {
+            margin: 0 0 6px;
+            font-size: 28px;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.01em;
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0 !important;
+        }
+
+        .profile-title a {
+            color: #444;
+            text-decoration: none;
+        }
+
+        .profile-email {
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 26px;
+            letter-spacing: 0.01em;
+            margin-bottom: 8px;
+        }
+
+        .section-title,
+        #about,
+        #publications {
+            font-family: Arial, sans-serif !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 22px;
+            margin-top: 24px !important;
+            padding-top: 10px;
+            border-top: 1px solid #cfcfcf;
+        }
+
+        a {
+            color: #444;
+        }
+    </style>
 </head>
 
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#publications">Publications</a></li>
-            </ul>
-        </div>
-    </nav>
-	
+    <main class="page main-content">
 
-    <!-- Page Content -->
-    <div class="container">
+    <section class="profile-header">
+        <h2 class="profile-title"><a href="index.html">MATTES MOLLENHAUER</a></h2>
+        <class="profile-email">mattes.mollenhauer (at) merantix-momentum.com</class="profile-email">
+    </section>
 
-    <div class="row">
-
-    <!-- Main -->
-    <div style="margin-top:5%; text-align:left;"> 
-    <p>
-    
-    <div class="col-md-3">
-    <!-- Image -->
-    <!--<div class="col-md-3" style="height: 100vh;">-->
-        <img class="img-responsive" src="img/profile01.jpg" height="300" width="300" alt=""><br>
-
-        <div style="font-family:'Oswald',sans-serif; font-size: 34px;">
-        <a style="color:#595d61;" href="index.html"><b>Mattes Mollenhauer</b></a>
-        </div>
-        <br>
-        <p><b>mattes.mollenhauer <br>
-            (at) merantix-momentum.com</b>
-        <br>
-        <br>
-        <a style="color:#333;" 
-            href="mailto:mattes.mollenhauer@fu-berlin.de" 
-            target="_blank"><img src="img/mail.svg" 
-            width="30" 
-            height="30"></a>
-                &nbsp;
-        <a style="color:#333;" 
-            href="https://scholar.google.de/citations?user=nxIcGXwAAAAJ&hl=en" 
-            target="_blank"><img src="img/Google_Scholar_logo.svg" 
-            width="30" 
-            height="30"></a>
-                &nbsp;
-        <a style="color:#333;" 
-            href="https://github.com/mollenhauerm"
-            target="_blank"><img src="img/github-mark.png" 
-            width="30" 
-            height="30"></a>
-        <br>
-        <p>
-        <br>
-        </p>
-    </div>
-
-
-    <div class="col-md-9">
-
-    <h2 id="about" style="font-family: Philosopher, sans-serif;">About</h2>
-    <br>
+    <h2 id="about">About</h2>
 
     I am a <i>senior machine learning researcher</i> at
     <a href="https://en.merantix-momentum.com">Merantix Momentum</a>.
@@ -117,9 +123,11 @@
     <br><br>
 
 
-    <h2 id="publications" style="font-family: Philosopher, sans-serif;">
+    <h2 id="publications">
     Publications and preprints
     </h2>
+
+    <br>
 
 
     <strong>Published</strong><br><br>
@@ -226,17 +234,8 @@
     PhD thesis, Freie Universität Berlin. 2022.
     <a href="http://dx.doi.org/10.17169/refubium-34182"><b>link</b></a> <br> <br>
 
-    </div>
+    </main>
 
-    </div>
-
-
-    <br><br><br><br>
-
-    
-    <!-- Other people may like it too! -->
-    <a style="color:#868d96;font-size:0.9em; float:right;" href="https://github.com/mavroudisv/plain-academic" target="_blank">Design courtesy of Vasilios Mavroudis: Plain Academic &emsp;</a><br>
-    
 </body>
 
 </html>
