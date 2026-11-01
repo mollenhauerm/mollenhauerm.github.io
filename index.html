@@ -595,6 +595,7 @@
           seed = 42717,
           transportRemainder = 0,
           lastEvolutionTime = null,
+          interactionX = null,
           profile,
           previous,
           velocity,
@@ -613,8 +614,16 @@
         }
         function palette() {
           return root.dataset.theme === "dark"
-            ? { bg: "#17191b", ink: [232, 232, 229] }
-            : { bg: "#f1f0ed", ink: [53, 53, 53] };
+            ? {
+                bg: "#17191b",
+                ink: [232, 232, 229],
+                pulse: [210, 102, 96],
+              }
+            : {
+                bg: "#f1f0ed",
+                ink: [53, 53, 53],
+                pulse: [150, 56, 52],
+              };
         }
         function reset() {
           profile = new Float32Array(w);
@@ -685,17 +694,22 @@
           for (let x = 0; x < w; x++) {
             let u = x / (w - 1),
               e = envelope(u, t);
+            const interaction =
+              interactionX === null
+                ? 0
+                : Math.exp(-0.5 * Math.pow((u - interactionX) / 0.05, 2));
+            const localEnvelope = Math.min(3, e * 0.94 + interaction * 2);
             const pulse =
               pulseGain * Math.exp(-0.5 * Math.pow((u - pulseX) / 0.1, 2));
             let white = rnd() * 2 - 1;
             lastNoise = lastNoise * 0.27 + white * 0.73;
             grain[x] = grain[x] * 0.82 + lastNoise * 0.18;
             const transient =
-              rnd() < 0.004 + pulse * 0.08 ? 1.8 + pulse * 2.6 : 0;
-            const pulseJitter = (rnd() * 2 - 1) * pulse * h * 0.16;
+              rnd() < 0.004 + pulse * 0.08 ? 1.8 + pulse * 0.8 : 0;
+            const pulseJitter = (rnd() * 2 - 1) * pulse * h * 0.06;
             let target =
               h * 0.5 +
-              grain[x] * e * h * 0.32 * (1 + transient) +
+              grain[x] * localEnvelope * h * 0.32 * (1 + transient) +
               pulseJitter;
             previous[x] = profile[x];
             velocity[x] = velocity[x] * 0.25 + (target - profile[x]) * 0.58;
@@ -705,6 +719,10 @@
         }
         function ink(alpha) {
           let c = palette().ink;
+          return `rgba(${c[0]},${c[1]},${c[2]},${clamp(alpha).toFixed(3)})`;
+        }
+        function pulseInk(alpha) {
+          let c = palette().pulse;
           return `rgba(${c[0]},${c[1]},${c[2]},${clamp(alpha).toFixed(3)})`;
         }
         function draw(t) {
@@ -744,31 +762,42 @@
                     : distance === 2
                       ? 0.035
                       : 0.015);
-              ctx.fillStyle = ink(baseAlpha + pulseAlpha);
               let yy = Math.round(y + k);
+              ctx.fillStyle = ink(baseAlpha);
               ctx.fillRect(x, yy, 1.15, 1.15);
+              if (pulse > 0.005) {
+                ctx.fillStyle = pulseInk(pulseAlpha);
+                ctx.fillRect(x, yy, 1.15, 1.15);
+              }
             }
-            ctx.fillStyle = ink(0.18 + 0.21 * env + pulse * 0.12);
-            ctx.fillRect(
-              x,
-              Math.min(mid, center),
-              1.15,
-              Math.max(1, Math.abs(mid - center) + 1),
-            );
-            ctx.fillStyle = ink(0.82 + pulse * 0.16);
+            const stemY = Math.min(mid, center);
+            const stemHeight = Math.max(1, Math.abs(mid - center) + 1);
+            ctx.fillStyle = ink(0.18 + 0.21 * env);
+            ctx.fillRect(x, stemY, 1.15, stemHeight);
+            ctx.fillStyle = ink(0.82);
             ctx.fillRect(x, center - 0.5, 1.2, 2);
+            if (pulse > 0.005) {
+              ctx.fillStyle = pulseInk(pulse * 0.14);
+              ctx.fillRect(x, stemY, 1.15, stemHeight);
+              ctx.fillStyle = pulseInk(pulse * 0.38);
+              ctx.fillRect(x, center - 0.5, 1.2, 2);
+            }
             // Fine residual trace follows the previous sample and lends persistence.
             if (x % 2 === 0) {
-              ctx.fillStyle = ink(0.12 + pulse * 0.06);
+              ctx.fillStyle = ink(0.12);
               ctx.fillRect(x, Math.round(py), 1, 1);
+              if (pulse > 0.005) {
+                ctx.fillStyle = pulseInk(pulse * 0.1);
+                ctx.fillRect(x, Math.round(py), 1, 1);
+              }
             }
             // During interference, short vertical fragments remain attached
             // to the waveform with enough spacing to keep the pulse legible.
-            const spikeRadius = Math.round(pulse * h * 0.12);
+            const spikeRadius = Math.round(pulse * h * 0.05);
             if (spikeRadius > 0 && rnd() < 0.1 + pulse * 0.32) {
               const up = Math.max(0, Math.round(rnd() * spikeRadius));
               const down = Math.max(0, Math.round(rnd() * spikeRadius));
-              ctx.fillStyle = ink(0.24 + pulse * 0.44);
+              ctx.fillStyle = pulseInk(0.3 + pulse * 0.38);
               ctx.fillRect(x, center - up, 1, up + down + 1);
             }
           }
@@ -799,6 +828,14 @@
             raf = requestAnimationFrame(tick);
           } else draw(offset);
         }
+        function setInteraction(clientX) {
+          interactionX = clamp(clientX / Math.max(1, innerWidth));
+          if (!running && profile) {
+            const t = current();
+            evolve(t);
+            draw(t);
+          }
+        }
         theme.addEventListener("click", () => {
           let dark = root.dataset.theme === "dark";
           root.dataset.theme = dark ? "light" : "dark";
@@ -811,6 +848,12 @@
             dark ? "Switch to dark mode" : "Switch to light mode",
           );
           draw(current());
+        });
+        addEventListener("pointermove", (event) => setInteraction(event.clientX), {
+          passive: true,
+        });
+        addEventListener("pointerdown", (event) => setInteraction(event.clientX), {
+          passive: true,
         });
         reduce.addEventListener("change", (e) => setRunning(!e.matches));
         document.addEventListener("visibilitychange", () => {
