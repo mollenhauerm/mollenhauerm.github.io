@@ -67,11 +67,7 @@ function renderPublication(publication) {
 
   return [
     '          <article class="paper">',
-    "            <h4>",
-    `              <a href="${url}" target="_blank" rel="noopener noreferrer">`,
-    `                ${title}`,
-    "              </a>",
-    "            </h4>",
+    `            <h4>${title}</h4>`,
     `            <p>${authors}</p>`,
     "            <p>",
     `              ${venue} ·`,
