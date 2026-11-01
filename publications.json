@@ -1,0 +1,127 @@
+{
+  "groups": [
+    {
+      "name": "Published",
+      "publications": [
+        {
+          "title": "Float8@2bits: Entropy Coding Enables Data-Free Model Compression",
+          "authors": ["Patrick Putzky", "Martin Genzel", "Mattes Mollenhauer", "Sebastian Schulze", "Thomas Wollmann", "Stefan Dietzel"],
+          "venue": "ICML 2026",
+          "url": "https://arxiv.org/abs/2601.22787"
+        },
+        {
+          "title": "Choose Your Model Size: Any Compression of Large Language Models Without Re-Computation",
+          "authors": ["Martin Genzel", "Patrick Putzky", "Pengfei Zhao", "Sebastian Schulze", "Mattes Mollenhauer", "Robert Seidel", "Stefan Dietzel", "Thomas Wollmann"],
+          "venue": "TMLR 2025",
+          "url": "https://openreview.net/pdf?id=Y6hdYf8tsg"
+        },
+        {
+          "title": "Regularized least squares learning with heavy-tailed noise is minimax optimal",
+          "authors": ["Mattes Mollenhauer", "Nicole Mücke", "Dimitri Meunier", "Arthur Gretton"],
+          "venue": "NeurIPS 2025",
+          "url": "https://arxiv.org/abs/2505.14214"
+        },
+        {
+          "title": "Compressing Large Language Models to Any Size Without Re-Computation",
+          "authors": ["Martin Genzel", "Patrick Putzky", "Pengfei Zhao", "Sebastian Schulze", "Mattes Mollenhauer", "Robert Seidel", "Stefan Dietzel", "Thomas Wollmann"],
+          "venue": "ICML Workshop 2025",
+          "url": "https://openreview.net/forum?id=cYES5Jexuy"
+        },
+        {
+          "title": "Optimal Rates for Vector-Valued Spectral Regularization Learning Algorithms",
+          "authors": ["Dimitri Meunier", "Zikai Shen", "Mattes Mollenhauer", "Arthur Gretton", "Zhu Li"],
+          "venue": "NeurIPS 2024",
+          "url": "https://papers.nips.cc/paper_files/paper/2024/hash/966bf8492dbaa8376f5e3756c09d7edb-Abstract-Conference.html"
+        },
+        {
+          "title": "Towards Optimal Sobolev Norm Rates for the Vector-Valued Regularized Least-Squares Algorithm",
+          "authors": ["Zhu Li", "Dimitri Meunier", "Mattes Mollenhauer", "Arthur Gretton"],
+          "venue": "JMLR 2024",
+          "url": "https://jmlr.org/papers/v25/23-1663.html"
+        },
+        {
+          "title": "Optimal Reaction Coordinates: Variational Characterization and Sparse Computation",
+          "authors": ["Andreas Bittracher", "Mattes Mollenhauer", "Péter Koltai", "Christof Schütte"],
+          "venue": "SIAM MMS 2023",
+          "url": "https://doi.org/10.1137/21M1448367"
+        },
+        {
+          "title": "Optimal Rates for Regularized Conditional Mean Embedding Learning",
+          "authors": ["Zhu Li", "Dimitri Meunier", "Mattes Mollenhauer", "Arthur Gretton"],
+          "venue": "NeurIPS 2022",
+          "url": "https://papers.nips.cc/paper_files/paper/2022/hash/1c71cd4032da425409d8ada8727bad42-Abstract-Conference.html"
+        },
+        {
+          "title": "Kernel autocovariance operators of stationary processes: Estimation and convergence",
+          "authors": ["Mattes Mollenhauer", "Stefan Klus", "Christof Schütte", "Péter Koltai"],
+          "venue": "JMLR 2022",
+          "url": "https://www.jmlr.org/papers/v23/20-442.html"
+        },
+        {
+          "title": "Singular Value Decomposition of Operators on Reproducing Kernel Hilbert Spaces",
+          "authors": ["Mattes Mollenhauer", "Ingmar Schuster", "Stefan Klus", "Christof Schütte"],
+          "venue": "Springer 2020",
+          "url": "https://doi.org/10.1007/978-3-030-51264-4_5"
+        },
+        {
+          "title": "Kernel Conditional Density Operators",
+          "authors": ["Ingmar Schuster", "Mattes Mollenhauer", "Stefan Klus", "Krikamol Muandet"],
+          "venue": "AISTATS 2020",
+          "url": "https://proceedings.mlr.press/v108/schuster20a.html"
+        },
+        {
+          "title": "Kernel methods for detecting coherent structures in dynamical data",
+          "authors": ["Stefan Klus", "Brooke E. Husic", "Mattes Mollenhauer", "Frank Noé"],
+          "venue": "Chaos 2019",
+          "url": "https://doi.org/10.1063/1.5100267"
+        }
+      ]
+    },
+    {
+      "name": "Preprints",
+      "publications": [
+        {
+          "title": "Asymptotic e-processes",
+          "authors": ["Pierre-François Massiani", "Sebastian Schulze", "Mattes Mollenhauer"],
+          "venue": "Preprint 2026",
+          "url": "https://arxiv.org/abs/2604.19353"
+        },
+        {
+          "title": "Fuk–Nagaev inequality in smooth Banach spaces: Optimum bounds for distributions of heavy-tailed martingales",
+          "authors": ["Mattes Mollenhauer", "Christian Fiedler"],
+          "venue": "Preprint 2025",
+          "url": "https://arxiv.org/abs/2512.10012"
+        },
+        {
+          "title": "On the concentration of subgaussian vectors and positive quadratic forms in Hilbert spaces",
+          "authors": ["Mattes Mollenhauer", "Claudia Schillings"],
+          "venue": "Preprint 2023",
+          "url": "https://arxiv.org/abs/2306.11404"
+        },
+        {
+          "title": "Learning linear operators: Infinite-dimensional regression as a well-behaved non-compact inverse problem",
+          "authors": ["Mattes Mollenhauer", "Nicole Mücke", "Tim Sullivan"],
+          "venue": "Preprint 2022",
+          "url": "https://arxiv.org/abs/2211.08875"
+        },
+        {
+          "title": "Nonparametric approximation of conditional expectation operators",
+          "authors": ["Mattes Mollenhauer", "Péter Koltai"],
+          "venue": "Preprint 2020",
+          "url": "https://arxiv.org/abs/2012.12917"
+        }
+      ]
+    },
+    {
+      "name": "Miscellaneous",
+      "publications": [
+        {
+          "title": "On the Statistical Approximation of Conditional Expectation Operators",
+          "authors": ["Mattes Mollenhauer"],
+          "venue": "PhD thesis, Freie Universität Berlin, 2022",
+          "url": "https://doi.org/10.17169/refubium-34182"
+        }
+      ]
+    }
+  ]
+}

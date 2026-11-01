@@ -1,0 +1,8 @@
+{
+  "name": "mollenhauer-website",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/render-publications.mjs",
+    "check": "node scripts/render-publications.mjs --check"
+  }
+}
