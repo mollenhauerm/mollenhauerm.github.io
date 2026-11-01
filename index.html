@@ -691,8 +691,8 @@
             lastNoise = lastNoise * 0.27 + white * 0.73;
             grain[x] = grain[x] * 0.82 + lastNoise * 0.18;
             const transient =
-              rnd() < 0.004 + pulse * 0.12 ? 1.8 + pulse * 3.2 : 0;
-            const pulseJitter = (rnd() * 2 - 1) * pulse * h * 0.2;
+              rnd() < 0.004 + pulse * 0.08 ? 1.8 + pulse * 2.6 : 0;
+            const pulseJitter = (rnd() * 2 - 1) * pulse * h * 0.16;
             let target =
               h * 0.5 +
               grain[x] * e * h * 0.32 * (1 + transient) +
@@ -725,36 +725,50 @@
             let center = Math.round(y);
             // The trace gains contrast inside the pulse so the interference
             // reads as part of the signal rather than a separate cloud.
-            for (let k = -2; k <= 2; k++) {
+            for (let k = -3; k <= 3; k++) {
+              const distance = Math.abs(k);
               const baseAlpha =
-                k === 0 ? 0.24 : Math.abs(k) === 1 ? 0.095 : 0.035;
+                distance === 0
+                  ? 0.38
+                  : distance === 1
+                    ? 0.18
+                    : distance === 2
+                      ? 0.08
+                      : 0.03;
               const pulseAlpha =
-                pulse * (k === 0 ? 0.12 : Math.abs(k) === 1 ? 0.07 : 0.025);
+                pulse *
+                (distance === 0
+                  ? 0.14
+                  : distance === 1
+                    ? 0.085
+                    : distance === 2
+                      ? 0.035
+                      : 0.015);
               ctx.fillStyle = ink(baseAlpha + pulseAlpha);
               let yy = Math.round(y + k);
-              ctx.fillRect(x, yy, 1, 1);
+              ctx.fillRect(x, yy, 1.15, 1.15);
             }
-            ctx.fillStyle = ink(0.14 + 0.17 * env + pulse * 0.1);
+            ctx.fillStyle = ink(0.18 + 0.21 * env + pulse * 0.12);
             ctx.fillRect(
               x,
               Math.min(mid, center),
-              1,
+              1.15,
               Math.max(1, Math.abs(mid - center) + 1),
             );
-            ctx.fillStyle = ink(0.64 + pulse * 0.18);
-            ctx.fillRect(x, center, 1, 1);
+            ctx.fillStyle = ink(0.82 + pulse * 0.16);
+            ctx.fillRect(x, center - 0.5, 1.2, 2);
             // Fine residual trace follows the previous sample and lends persistence.
             if (x % 2 === 0) {
-              ctx.fillStyle = ink(0.1 + pulse * 0.05);
+              ctx.fillStyle = ink(0.12 + pulse * 0.06);
               ctx.fillRect(x, Math.round(py), 1, 1);
             }
-            // During interference, the trace itself sprouts short, dense
-            // vertical fragments. They remain attached to the waveform.
-            const spikeRadius = Math.round(pulse * h * 0.16);
-            if (spikeRadius > 0 && rnd() < 0.35 + pulse * 0.55) {
+            // During interference, short vertical fragments remain attached
+            // to the waveform with enough spacing to keep the pulse legible.
+            const spikeRadius = Math.round(pulse * h * 0.12);
+            if (spikeRadius > 0 && rnd() < 0.1 + pulse * 0.32) {
               const up = Math.max(0, Math.round(rnd() * spikeRadius));
               const down = Math.max(0, Math.round(rnd() * spikeRadius));
-              ctx.fillStyle = ink(0.2 + pulse * 0.42);
+              ctx.fillStyle = ink(0.24 + pulse * 0.44);
               ctx.fillRect(x, center - up, 1, up + down + 1);
             }
           }
