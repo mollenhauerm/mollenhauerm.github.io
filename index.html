@@ -11,18 +11,18 @@
     <title>Mattes Mollenhauer — Research</title>
     <style>
       :root {
-        color-scheme: light;
-        --bg: #f1f0ed;
-        --fg: #353535;
-        --muted: #777671;
-        --line: #d8d6d1;
-      }
-      html[data-theme="dark"] {
         color-scheme: dark;
         --bg: #17191b;
         --fg: #e8e8e5;
         --muted: #a4a5a2;
         --line: #414448;
+      }
+      html[data-theme="light"] {
+        color-scheme: light;
+        --bg: #f1f0ed;
+        --fg: #353535;
+        --muted: #6d6c68;
+        --line: #d8d6d1;
       }
       * {
         box-sizing: border-box;
@@ -150,9 +150,6 @@
           margin-top: 55px;
         }
       }
-      :root {
-        --muted: #6d6c68;
-      }
       @media (max-width: 600px) {
         header {
           flex-wrap: wrap;
@@ -182,14 +179,43 @@
       .desc {
         max-width: 790px;
       }
-      .links {
+      .social-links {
         display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+        gap: 8px;
         margin: 22px 0;
       }
+      .social-link {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        color: var(--fg);
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .social-link:hover {
+        border-color: var(--fg);
+        transform: translateY(-1px);
+      }
+      .social-link svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .social-link-symbol {
+        font-family: ui-serif, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1;
+      }
       .desc a,
-      .links a,
       .section a,
       footer a {
         color: var(--fg);
@@ -303,24 +329,43 @@
           and robust learning systems, compression, and high-dimensional
           inference.
         </p>
-        <div class="links">
+        <nav class="social-links" aria-label="Profiles">
           <a
+            class="social-link"
             href="https://scholar.google.com/citations?hl=en&amp;oi=ao&amp;user=nxIcGXwAAAAJ"
             target="_blank"
             rel="noopener noreferrer"
-            >Google Scholar ↗</a
-          ><a
+            aria-label="Google Scholar"
+            title="Google Scholar"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2.5 8.5 12 3.5l9.5 5-9.5 5-9.5-5Z" />
+              <path d="M6 10.5v5.2c3.8 3 8.2 3 12 0v-5.2M21.5 8.5v6" />
+            </svg>
+          </a>
+          <a
+            class="social-link"
             href="https://github.com/mollenhauerm"
             target="_blank"
             rel="noopener noreferrer"
-            >GitHub ↗</a
-          ><a
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.5 20c-4.8 1.4-4.8-2.4-6.5-3m13 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.7-1.4 5.7-6.2 0-1.3-.5-2.5-1.3-3.4.1-.4.6-1.8-.1-3.4 0 0-1.1-.4-3.6 1.3a12.5 12.5 0 0 0-6.5 0C6.2 3.1 5.1 3.5 5.1 3.5c-.7 1.6-.2 3-.1 3.4-.8.9-1.3 2.1-1.3 3.4 0 4.8 2.9 5.9 5.7 6.2-.5.5-.6 1-.6 2V22" />
+            </svg>
+          </a>
+          <a
+            class="social-link"
             href="https://x.com/gaussianmeasure"
             target="_blank"
             rel="noopener noreferrer"
-            >X ↗</a
+            aria-label="X"
+            title="X"
           >
-        </div>
+            <span class="social-link-symbol" aria-hidden="true">𝕏</span>
+          </a>
+        </nav>
       </section>
       <section class="section" id="about">
         <h2>About</h2>
@@ -527,12 +572,19 @@
           theme = document.getElementById("theme"),
           reduce = matchMedia("(prefers-reduced-motion: reduce)");
         const duration = 36;
+        let savedTheme;
         try {
-          root.dataset.theme =
-            localStorage.getItem("theme") === "dark" ? "dark" : "light";
+          savedTheme = localStorage.getItem("theme");
         } catch (_) {}
+        root.dataset.theme = savedTheme === "light" ? "light" : "dark";
         theme.textContent =
           root.dataset.theme === "dark" ? "☼  Light mode" : "◐  Dark mode";
+        theme.setAttribute(
+          "aria-label",
+          root.dataset.theme === "dark"
+            ? "Switch to light mode"
+            : "Switch to dark mode",
+        );
         let running = !reduce.matches,
           start = performance.now(),
           offset = 0,
