@@ -569,7 +569,8 @@
           ctx = canvas.getContext("2d", { alpha: false }),
           theme = document.getElementById("theme"),
           reduce = matchMedia("(prefers-reduced-motion: reduce)");
-        const duration = 36;
+        const duration = 36,
+          amplitudeScale = 1.6;
         let savedTheme;
         try {
           savedTheme = localStorage.getItem("theme");
@@ -699,18 +700,20 @@
             const localEnvelope = Math.min(3, e * 0.94 + interaction * 2);
             const pulse =
               pulseGain * Math.exp(-0.5 * Math.pow((u - pulseX) / 0.1, 2));
-            let white = rnd() * 2 - 1;
-            lastNoise = lastNoise * 0.27 + white * 0.73;
-            grain[x] = grain[x] * 0.82 + lastNoise * 0.18;
+            const white = rnd() * 2 - 1;
+            lastNoise = lastNoise * 0.68 + white * 0.32;
+            grain[x] = grain[x] * 0.93 + lastNoise * 0.08;
             const transient =
               rnd() < 0.004 + pulse * 0.08 ? 1.8 + pulse * 0.8 : 0;
             const pulseJitter = (rnd() * 2 - 1) * pulse * h * 0.06;
-            let target =
+            const target =
               h * 0.5 +
-              grain[x] * localEnvelope * h * 0.32 * (1 + transient) +
-              pulseJitter;
+              amplitudeScale *
+                (grain[x] * localEnvelope * h * 0.52 * (1 + transient) +
+                  pulseJitter);
             previous[x] = profile[x];
-            velocity[x] = velocity[x] * 0.25 + (target - profile[x]) * 0.58;
+            velocity[x] =
+              velocity[x] * 0.58 + (target - profile[x]) * 0.24;
             profile[x] += velocity[x];
             profile[x] = clamp(profile[x], h * 0.08, h * 0.92);
           }
