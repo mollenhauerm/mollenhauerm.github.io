@@ -168,7 +168,7 @@
         text-decoration: none;
       }
       .intro {
-        padding: 55px 0 15px;
+        padding: 35px 0 15px;
       }
       h1 {
         font-size: clamp(42px, 6vw, 74px);
@@ -291,7 +291,7 @@
           font-size: 12px;
         }
         .intro {
-          padding-top: 40px;
+          padding-top: 28px;
         }
       }
     </style>
@@ -617,12 +617,12 @@
             ? {
                 bg: "#17191b",
                 ink: [232, 232, 229],
-                pulse: [210, 102, 96],
+                pulse: [189, 92, 86],
               }
             : {
                 bg: "#f1f0ed",
                 ink: [53, 53, 53],
-                pulse: [150, 56, 52],
+                pulse: [135, 50, 47],
               };
         }
         function reset() {
@@ -764,31 +764,31 @@
                       : 0.015);
               let yy = Math.round(y + k);
               ctx.fillStyle = ink(baseAlpha);
-              ctx.fillRect(x, yy, 1.15, 1.15);
+              ctx.fillRect(x, yy, 1.35, 1.35);
               if (pulse > 0.005) {
                 ctx.fillStyle = pulseInk(pulseAlpha);
-                ctx.fillRect(x, yy, 1.15, 1.15);
+                ctx.fillRect(x, yy, 1.35, 1.35);
               }
             }
             const stemY = Math.min(mid, center);
             const stemHeight = Math.max(1, Math.abs(mid - center) + 1);
             ctx.fillStyle = ink(0.18 + 0.21 * env);
-            ctx.fillRect(x, stemY, 1.15, stemHeight);
+            ctx.fillRect(x, stemY, 1.35, stemHeight);
             ctx.fillStyle = ink(0.82);
-            ctx.fillRect(x, center - 0.5, 1.2, 2);
+            ctx.fillRect(x, center - 0.7, 1.4, 2.4);
             if (pulse > 0.005) {
               ctx.fillStyle = pulseInk(pulse * 0.14);
-              ctx.fillRect(x, stemY, 1.15, stemHeight);
+              ctx.fillRect(x, stemY, 1.35, stemHeight);
               ctx.fillStyle = pulseInk(pulse * 0.38);
-              ctx.fillRect(x, center - 0.5, 1.2, 2);
+              ctx.fillRect(x, center - 0.7, 1.4, 2.4);
             }
             // Fine residual trace follows the previous sample and lends persistence.
             if (x % 2 === 0) {
               ctx.fillStyle = ink(0.12);
-              ctx.fillRect(x, Math.round(py), 1, 1);
+              ctx.fillRect(x, Math.round(py), 1.2, 1.2);
               if (pulse > 0.005) {
                 ctx.fillStyle = pulseInk(pulse * 0.1);
-                ctx.fillRect(x, Math.round(py), 1, 1);
+                ctx.fillRect(x, Math.round(py), 1.2, 1.2);
               }
             }
             // During interference, short vertical fragments remain attached
@@ -798,7 +798,7 @@
               const up = Math.max(0, Math.round(rnd() * spikeRadius));
               const down = Math.max(0, Math.round(rnd() * spikeRadius));
               ctx.fillStyle = pulseInk(0.3 + pulse * 0.38);
-              ctx.fillRect(x, center - up, 1, up + down + 1);
+              ctx.fillRect(x, center - up, 1.2, up + down + 1);
             }
           }
         }
