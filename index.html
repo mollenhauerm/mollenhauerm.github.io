@@ -747,10 +747,10 @@
                 distance === 0
                   ? 0.38
                   : distance === 1
-                    ? 0.18
+                    ? 0.24
                     : distance === 2
-                      ? 0.08
-                      : 0.03;
+                      ? 0.12
+                      : 0.04;
               const pulseAlpha =
                 pulse *
                 (distance === 0
@@ -770,15 +770,15 @@
             }
             const stemY = Math.min(mid, center);
             const stemHeight = Math.max(1, Math.abs(mid - center) + 1);
-            ctx.fillStyle = ink(0.18 + 0.21 * env);
+            ctx.fillStyle = ink(0.22 + 0.23 * env);
             ctx.fillRect(x, stemY, 1.35, stemHeight);
             ctx.fillStyle = ink(0.82);
-            ctx.fillRect(x, center - 0.7, 1.4, 2.4);
+            ctx.fillRect(x, center - 2.3, 1.55, 4.6);
             if (pulse > 0.005) {
               ctx.fillStyle = pulseInk(pulse * 0.14);
               ctx.fillRect(x, stemY, 1.35, stemHeight);
               ctx.fillStyle = pulseInk(pulse * 0.38);
-              ctx.fillRect(x, center - 0.7, 1.4, 2.4);
+              ctx.fillRect(x, center - 2.3, 1.55, 4.6);
             }
             // Fine residual trace follows the previous sample and lends persistence.
             if (x % 2 === 0) {
