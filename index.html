@@ -702,7 +702,7 @@
               pulseGain * Math.exp(-0.5 * Math.pow((u - pulseX) / 0.1, 2));
             const white = rnd() * 2 - 1;
             lastNoise = lastNoise * 0.68 + white * 0.32;
-            grain[x] = grain[x] * 0.93 + lastNoise * 0.08;
+            grain[x] = grain[x] * 0.86 + lastNoise * 0.11;
             const transient =
               rnd() < 0.004 + pulse * 0.08 ? 1.8 + pulse * 0.8 : 0;
             const pulseJitter = (rnd() * 2 - 1) * pulse * h * 0.06;
